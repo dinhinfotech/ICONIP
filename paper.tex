@@ -143,7 +143,8 @@ $\kappa_{r,d}(G,G^{'}) =
 \subsection{Joint neighborhood subgraphs link prediction}
 
 In the link prediction problem we are given a graph $G(V,E)$ and a binary target vector $Y=\{y_{(0,0)},y_{(0,1)}, \cdots, y_{(|V|,|V|)}\}$ where $y_{(u,v)}=1$ if $(u,v) \in E$ and 0 otherwise. The training data is obtained considering a random subset of edges in $E^{tr} \in E$ and inducing a training graph $G^{tr}=(V,E^{tr})$. The remaining edges $E^{ts} = E \setminus E^{tr}$ are used to partition the target vectors: $Y^{tr} = \{y_{(u,v)} | (u,v) \in E^{tr}\}$, $Y^{ts} = \{y_{(u,v)} | (u,v) \in E^{ts}\}$.
-We then build a train and test set as the corresponding joint neighborhood subgraphs as detailed in Section~\ref{sec:link}. We have now cast the problem in a standard classification problem in the domain of graphs. 
+We can now cast the problem as a standard classification problem in the domain of graphs. Given $G^{tr}$ we build a train and test set as the corresponding joint neighborhood subgraphs as detailed in Section~\ref{sec:link}. 
+We can now compute a Gram matrix of the instances and solve the task using the LinearSVC library.
 
 \section{Experiment}
 In this section, we intend to measure the performance of our proposed method and compare it with other link prediction methods. We follow the procedure used in \cite{matrix-factorization} which employs six datasets in different domains. In the following we shortly describe each dataset.
