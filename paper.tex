@@ -120,16 +120,16 @@ $\kappa_{r,d}(G,G^{'}) =
 Related to exact matching function, this function needs to solve the graph isomorphism problem. This problem is not known to be solvable in polynomial time nor to be NP-complete. In \cite{nspdk}, they propose an approximate method to figure out graph isomorphism problem. It first transforms graphs into strings. It then employ a hash function to map each unique string with an integer number. Finally, two graphs are isomorphic if they have the same corresponding integer numbers.
 
 \subsection{Node labeling}
-NSPDK takes labeled graphs as its input to proceed. Therefore, graph node labeling is a step needs to be done before employing NSPDK for graph similarity measure. Here, we propose to a node labeling function $\ell$ which assigns labels for nodes based on node degrees. Our idea is that nodes having small degree, less than or equal to 5, we use the degree values as their labels. For nodes with degree greater than 5, we group them into different groups based on the degrees, nodes are in the same group are assigned the same labels. We label for nodes owning similar degrees with the same label due to the assumption that nodes with similar degrees tend to share common properties. Formally, the function is defined as:
+NSPDK takes labeled graphs as its input to proceed. Therefore, graph node labeling is a step needs to be done before employing NSPDK for graph similarity measure. Here, we propose a node labeling function $\ell$ which assigns labels for nodes based on node degrees. First, we use the degree values for their labels for nodes having degree less than or equal 5. We then discretize the degrees larger than 5 into k bins and assign the same label for nodes belong to the same bin. We label for nodes owning similar degrees with the same label due to the assumption that nodes with similar degrees tend to share common properties. Formally, the function is defined as:
 \begin{center}
 $\ell(u) = \left\{
 	\begin{array}{ll}
 		d(u),\  & \mbox{if } d(u) \leq 5 \\
-		6+i,\ & \mbox{if }  5 + \left[ \frac{d(G) - 5}{\lambda-5} \right] *i \leq d(u) < 5 + \left[ \frac{d(G) - 5}{\lambda-5}\right] *(i+1)
+		5+i,\ & \mbox{if } d(u) > 5
 	\end{array}
 \right.$,
 \end{center}
-where $\lambda > 5$ is the number of labels used to label for nodes in the graphs. The value of $\lambda$ depend on the histogram of graph node degree. We can use tuning technique in order to obtain suitable value for $\lambda$.
+where $i = \lceil \frac{d(u)-5}{bin}\rceil$, $bin = \frac{d(G)-5}{\lambda - 5}$ and $\lambda$ ($\lambda > 5$) is the number of labels used to label for nodes in the graphs. The value of $\lambda$ depend on the histogram of graph node degree. We can use tuning technique in order to obtain suitable value for $\lambda$.
 \subsection{Link representation}
 Most methods for link prediction attempt to computes similarities between nodes and consider to rank links. We desire to take links as examples to learn and predict. Therefore, we propose a method which model the context of two nodes to represent for link connecting them.
 
