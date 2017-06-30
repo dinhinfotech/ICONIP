@@ -157,12 +157,12 @@ To compare the performance of the JNSL method with other link prediction approac
 
 \item \textit{Condmat} \cite{condmat}: nodes are scientists working in condensed matter physics, edges encode co-authorship. This network has 14230 nodes and 1196 links with a median degree of 0.17.
 
-\item \textit{Conflict} \cite{conflict1}, \cite{conflict2}: a network describing the dispute between 130 countries. A link connecting two nodes (countries) if they dispute. We have 180 links in total in this network. The average degree is 2.5.
+\item \textit{Conflict} \cite{conflict1}, \cite{conflict2}: nodes are countries and edges encode a conflict or a dispute. We have 130 nodes and 180 links in total in this network with a median degree of 2.5.
 
 \item \textit{Powergrid} cite{powergrid}: a network of electric powergrid in US. It has 4941 nodes and 6594 links. The average degree is 2.7.
 \end{itemize}
 
-We evaluate the performance of employed methods via a 10 splits. Each round, a given ratio of links will be used to train models, and the rest of links are used to test. For \textit{Protein}, \textit{Metabolic}, \textit{Nips} and \textit{Conflict} networks, we set the training ratio to 10$\%$ while the training ratio for \textit{Condmat} and \textit{Powergrid} to 90$\%$. The performance of each method is computed by taking an average of ROC-AUC over 10 rounds.
+We evaluate the performance of employed methods splitting 10 times the data in a train and a test part. For \textit{Protein}, \textit{Metabolic}, \textit{Nips} and \textit{Conflict} networks, we use 10$\%$ of the edges to induce the training set while for \textit{Condmat} and \textit{Powergrid} we use 90$\%$ of the links. The performance of each method is computed as the average of the AUC-ROC over the 10 rounds.
 
 \textbf{Model Selection}: The values of different hyper-parameters are set by using a 3-fold on training set in which we use one fold for training and the rest two folds for validation. We tune the values of radius for extracting subgraphs $R$ in $\lbrace 1, 2 \rbrace$, $\lambda$ in node label function in $\lbrace 10, 15 \rbrace$, for $r$ and $d$ parameters of NSPDK in $\lbrace  1, 2 \rbrace$ and $\lbrace  1, 2, 3 \rbrace$, respectively. Finally, the regularization tradeoff $C$ for the SVM is picked up in $\lbrace 10^{-4}, 10^{-3}, 10^{-2},\ 10^{-1}, 1,\ 10,\ 10^2, 10^3,\ 10^4 \rbrace$.
 
