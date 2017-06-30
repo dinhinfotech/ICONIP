@@ -86,7 +86,7 @@ Unsupervised learning methods are non-adaptive, and hence computationally effici
 
 Supervised link prediction methods convert the problem into a binary classification task where links present in the network (at a given time) are considered as positive instances and a subset of all the non links are considered as negative instances. Following \cite{matrix-factorization}, we can further group these methods into four classes: feature-based models, graph regularization models, latent class models and latent feature models. 
 A Bayesian nonparametric approach is used in \cite{nonparametric} to compute a nonparametric latent feature model that does not need a user defined number of latent features but rather induces it as part of the training phase. 
-In \cite{matrix-factorization} a matrix factorization approach is used to extract latent features that can take into consideration the output of an unsupervised method. The authors show impressive increase in predictive performance when considering a ranking loss function to deal with the imbalance problem (i.e. a much larger number of negative vs positive instances). 
+In \cite{matrix-factorization} a matrix factorization approach is used to extract latent features that can take into consideration the output of an arbitrary unsupervised method. The authors show a significant increase in predictive performance when considering a ranking loss function suitable for  the imbalance problem, i.e. when the number of negative is much larger than the number of positive instances. 
 
 In general supervised methods exhibit better accuracies compared to unsupervised methods although incurring in much higher computational and memory complexity costs.
 
