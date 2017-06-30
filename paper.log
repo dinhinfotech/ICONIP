@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/MacPorts 2015_8) (preloaded format=pdflatex 2016.2.22)  30 JUN 2017 10:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/MacPorts 2015_8) (preloaded format=pdflatex 2016.2.22)  30 JUN 2017 10:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -334,7 +334,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 {/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \vbox (badness 5105) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2]
 [3] [4] [5] [6]
@@ -358,7 +358,7 @@ Here is how much of TeX's memory you used:
  6208 multiletter control sequences out of 15000+600000
  11232 words of font info for 43 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
- 38i,11n,26p,1655b,304s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,11n,26p,1655b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
 </opt/local/share/texmf-texlive/fonts/type1/public/amsfonts
 /cm/cmbx10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
 mbx12.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx9.
@@ -375,7 +375,7 @@ msfonts/cm/cmsy10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfon
 ts/cm/cmsy5.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
 cmsy7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy9.
 pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on paper.pdf (7 pages, 219905 bytes).
+Output written on paper.pdf (7 pages, 220851 bytes).
 PDF statistics:
  96 PDF objects out of 1000 (max. 8388607)
  69 compressed objects within 1 object stream
