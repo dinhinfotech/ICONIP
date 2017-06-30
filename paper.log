@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/MacPorts 2015_8) (preloaded format=pdflatex 2016.2.22)  30 JUN 2017 13:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/MacPorts 2015_8) (preloaded format=pdflatex 2016.2.22)  30 JUN 2017 15:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -337,6 +337,9 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2]
+
+LaTeX Warning: Reference `key' on page 3 undefined on input line 107.
+
 [3] [4] [5] [6]
 Missing character: There is no â in font cmr9!
 Missing character: There is no € in font cmr9!
@@ -350,32 +353,36 @@ Missing character: There is no ˜ in font cmr9!
 Missing character: There is no â in font cmr9!
 Missing character: There is no € in font cmr9!
 Missing character: There is no ™ in font cmr9!
- [7] (./paper.aux) ) 
+ [7] (./paper.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 2932 strings out of 494119
- 37535 string characters out of 6155692
- 110719 words of memory out of 5000000
- 6208 multiletter control sequences out of 15000+600000
+ 2933 strings out of 494119
+ 37540 string characters out of 6155692
+ 108719 words of memory out of 5000000
+ 6209 multiletter control sequences out of 15000+600000
  11232 words of font info for 43 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
- 38i,11n,26p,1051b,304s stack positions out of 5000i,500n,10000p,200000b,80000s
-</opt/local/share/texmf-texlive/fonts/type1/public/amsfonts
-/cm/cmbx10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mbx12.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx9.
-pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/
-local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi5.pfb></opt/local/
-share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></opt/local/share/
-texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/local/share/texmf-
-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb></opt/local/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmr6.pfb></opt/local/share/texmf-texlive/fonts/
-type1/public/amsfonts/cm/cmr7.pfb></opt/local/share/texmf-texlive/fonts/type1/p
-ublic/amsfonts/cm/cmr9.pfb></opt/local/share/texmf-texlive/fonts/type1/public/a
-msfonts/cm/cmsy10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfon
-ts/cm/cmsy5.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
-cmsy7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy9.
-pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on paper.pdf (7 pages, 221309 bytes).
+ 38i,11n,26p,1051b,306s stack positions out of 5000i,500n,10000p,200000b,80000s
+</opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></o
+pt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/lo
+cal/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx9.pfb></opt/local/sh
+are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/local/share/t
+exmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/local/share/texmf-
+texlive/fonts/type1/public/amsfonts/cm/cmmi5.pfb></opt/local/share/texmf-texliv
+e/fonts/type1/public/amsfonts/cm/cmmi7.pfb></opt/local/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmr10.pfb></opt/local/share/texmf-texlive/fonts/type
+1/public/amsfonts/cm/cmr5.pfb></opt/local/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cm/cmr6.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmr7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
+cmr9.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy5.pfb></
+opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/lo
+cal/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy9.pfb></opt/local/sh
+are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on paper.pdf (7 pages, 222084 bytes).
 PDF statistics:
  96 PDF objects out of 1000 (max. 8388607)
  69 compressed objects within 1 object stream

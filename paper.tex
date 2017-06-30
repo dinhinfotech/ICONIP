@@ -101,6 +101,27 @@ We represent a problem instance as a graph $G=(V,E)$ where $V$ is the set of nod
 
 We define the \textit{distance} $\mathcal{D}(u,v)$ between two nodes $u$ and $v$, as the number of edges on the shortest path between them. The \textit{neighborhood} of a node $u$ with radius $r$, $N_r(u) = \lbrace v\ |\ d(u,v) \leq r \rbrace$, is the set of nodes at distance no greater than $r$ from $u$. The corresponding \textit{neighborhood subgraph} $\mathcal{N}_{r}^{u}$ is the  subgraph induced by the neighborhood (i.e. considering all the edges with endpoints in $N_r(u)$). The \textit{degree} of a node $u$, $d(u) = |\mathcal{N}_{1}^{u}|$, is the cardinality of its neighborhood. The maximum node degree in the graph $G$ is $d(G)$.
 
+
+
+\subsection{Link encoding as subgraphs union}
+Most methods for link prediction compute pairwise nodes similarities treating  the nodes defining the candidate edge independently. Instead we propose to jointly consider both candidate endpoint nodes together with their extended ''context''. To do so we build a graph starting from the two nodes and the underlying network. Given nodes $u$ and $v$, we first extract the two neighborhood sets with a user defined radius $R$ rooted at $u$ and $v$ to obtain $N_R(u)$ and $N_R(v)$, respectively. We then consider the graph $\mathcal{J}$ induced by the set union $N_R(u) \cup N_R(u)$. Finally we add an auxiliary node $w$ and the necessary edges to connect it to $u$ and $v$ (see Fig.\ref{key}).
+
+
+\subsection{Node labeling}
+We propose to use a graph kernel approach to classify the subgraphs encoding each link. In our setup nodes are not endowed with any ''side'' information. However to increase the discriminative power of the similarity notion induced by the graph kernel, instead of assuming a dummy, non-informative label on each node, we propose to use a node labeling function $\ell$ which assigns a discrete label as the node degree. As the degree distribution can in principle extend to large values, we employ a  discretization technique. 
+First, we use the degree values for their labels for nodes having degree less than or equal 5. We then discretize the degrees larger than a user defined threshold $T$ ($T=5$ in our experimental evaluation) into $k$ bins and assign the same label for nodes belong to the same bin. We label for nodes owning similar degrees with the same label due to the assumption that nodes with similar degrees tend to share common properties. Formally, the function is defined as:
+\begin{center}
+$\ell(u) = \left\{
+	\begin{array}{ll}
+		d(u),\  & \mbox{if } d(u) \leq T \\
+		T+i,\ & \mbox{if } d(u) > T
+	\end{array}
+\right.$,
+\end{center}
+where $i = \lceil \frac{d(u)-T}{bin}\rceil$, $bin = \frac{d(G)-T}{\lambda - T}$ and $\lambda$ ($\lambda > T$) is the number of labels used to label for nodes in the graphs. The value of $\lambda$ depend on the histogram of graph node degree. We can use tuning technique in order to obtain suitable value for $\lambda$.
+
+
+
 \subsection{The neighborhood subgraph pairwise distance kernel}
 In this section, we briefly desbribe an efficient kernel named NSPDK \cite{nspdk} which allows to measure the similarity between labeled graphs. NSPDK is an instance of decompositional kernel \cite{convolution-kernel}.
 
@@ -117,21 +138,6 @@ $\kappa_{r,d}(G,G^{'}) =
 
 Related to exact matching function, this function needs to solve the graph isomorphism problem. This problem is not known to be solvable in polynomial time nor to be NP-complete. In \cite{nspdk}, they propose an approximate method to figure out graph isomorphism problem. It first transforms graphs into strings. It then employ a hash function to map each unique string with an integer number. Finally, two graphs are isomorphic if they have the same corresponding integer numbers.
 
-\subsection{Node labeling}
-NSPDK takes labeled graphs as its input to proceed. Therefore, graph node labeling is a step needs to be done before employing NSPDK for graph similarity measure. Here, we propose a node labeling function $\ell$ which assigns labels for nodes based on node degrees. First, we use the degree values for their labels for nodes having degree less than or equal 5. We then discretize the degrees larger than a user defined threshold $T$ ($T=5$ in our experimental evaluation) into $k$ bins and assign the same label for nodes belong to the same bin. We label for nodes owning similar degrees with the same label due to the assumption that nodes with similar degrees tend to share common properties. Formally, the function is defined as:
-\begin{center}
-$\ell(u) = \left\{
-	\begin{array}{ll}
-		d(u),\  & \mbox{if } d(u) \leq T \\
-		T+i,\ & \mbox{if } d(u) > T
-	\end{array}
-\right.$,
-\end{center}
-where $i = \lceil \frac{d(u)-T}{bin}\rceil$, $bin = \frac{d(G)-T}{\lambda - T}$ and $\lambda$ ($\lambda > T$) is the number of labels used to label for nodes in the graphs. The value of $\lambda$ depend on the histogram of graph node degree. We can use tuning technique in order to obtain suitable value for $\lambda$.
-\subsection{Link representation}
-Most methods for link prediction attempt to computes similarities between nodes and consider to rank links. We desire to take links as examples to learn and predict. Therefore, we propose a method which model the context of two nodes to represent for link connecting them.
-
-Let us consider two nodes $u$ and $v$ ($u, v \in V$), we first extract two neighborhood subgraphs with radius $R$ rooted at $u$ and $v$ to obtain $N_R(u)$ and $N_R(v)$, respectively. We then create an artificial node $w$. This node is connected to both $u$ and $v$. As a consequence, we achieve a single graph representing for a link connecting $u$ and $v$.
 \subsection{Joint neighborhood subgraphs link prediction}
 Given a graph $G(V,E)$ and a set of links $L = \lbrace(u,v)\ |\ (u,v)\in\ O\ or\ (u,v)\in U \rbrace$, our method consists five steps:
 \begin{itemize}
