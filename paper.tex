@@ -116,11 +116,11 @@ NSPDK takes labeled graphs as its input to proceed. Therefore, graph node labeli
 $\ell(u) = \left\{
 	\begin{array}{ll}
 		d(u),\  & \mbox{if } d(u) \leq 5 \\
-		6+i,\ & \mbox{if }  5 + \frac{d(G) - 5}{\lambda-5}*i \leq d(u) < 5 + \frac{d(G) - 5}{\lambda-5}*(i+1)
+		6+i,\ & \mbox{if }  5 + \left[ \frac{d(G) - 5}{\lambda-5} \right] *i \leq d(u) < 5 + \left[ \frac{d(G) - 5}{\lambda-5}\right] *(i+1)
 	\end{array}
 \right.$,
 \end{center}
-where $\lambda > 5$ is the number of labels used to label for nodes in the graphs. The values of $\lambda$ depend on the histogram of graph node degree. We can use tuning technique in order to obtain suitable value for $\lambda$.
+where $\lambda > 5$ is the number of labels used to label for nodes in the graphs. The value of $\lambda$ depend on the histogram of graph node degree. We can use tuning technique in order to obtain suitable value for $\lambda$.
 \subsection{Link representation}
 Most methods for link prediction attempt to computes similarities between nodes and consider to rank links. We desire to take links as examples to learn and predict. Therefore, we propose a method which model the context of two nodes to represent for link connecting them.
 
@@ -156,7 +156,7 @@ We evaluate the performance of employed methods via a 10 splits. Each round, a g
 \textbf{Model Selection}: The values of different hyper-parameters are set by using a 3-fold on training set in which we use one fold for training and the rest two folds for validation. We tune the values of radius for extracting subgraphs $R$ in $\lbrace 1, 2 \rbrace$, $\lambda$ in node label function in $\lbrace 10, 15 \rbrace$, for $r$ and $d$ parameters of NSPDK in $\lbrace  1, 2 \rbrace$ and $\lbrace  1, 2, 3 \rbrace$, respectively. Finally, the regularization tradeoff $C$ for the SVM is picked up in $\lbrace 10^{-4}, 10^{-3}, 10^{-2},\ 10^{-1}, 1,\ 10,\ 10^2, 10^3,\ 10^4 \rbrace$.
 
 \section{Results and Discussion}
-Table \ref{result_table} shows the performance of link prediction methods in ROC-AUC on six datasets in which we mark as bold for the best ROC-AUC on each dataset. From the results on the table, we can group methods into two groups based on their performances: supervised methods and unsupervised methods. The performance of supervised methods are considerably higher than unsuperivsed ones in most cases, except in the Conflict dataset where Sup-Top outperforms Fact+Scores, but with a very small difference. Concerning supervised methods, JNSL outperforms Fact-Scores in all cases. The difference between their performance is small in PowerGrid and Protein datasets with 0.5$\%$ and 0.8$\%$, respectively.
+Table \ref{result_table} shows the performance of link prediction methods in ROC-AUC on six datasets in which we mark as bold for the best ROC-AUC on each dataset. From the results on the table, we can group methods into two groups based on their performances: supervised methods and unsupervised methods. The performance of supervised methods are considerably higher than unsuperivsed ones in most cases, except in the Conflict dataset where Sup-Top outperforms Fact+Scores, but with a very small difference. Concerning supervised methods, JNSL outperforms Fact-Scores in all cases. The difference between their performance is small in PowerGrid and Protein datasets with 0.5$\%$ and 0.8$\%$, respectively. And the big gap is in the Condmat dataset with 7.4$\%$. 
 
 \begin{table}
 \caption{The ROC-AUC performance on six datasets of different link prediction methods in which AA: Adamic-Adar, PA \cite{pa} preferential Attachment, SHP: Shortest Path, Sup-Top: Liear regression running on unsupervised scores \cite{matrix-factorization}:, SVD \cite{matrix-factorization}:: Singular value decomposition, Fact+Scores \cite{matrix-factorization}: Factorization with unsupervised scores. }
