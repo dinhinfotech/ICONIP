@@ -89,20 +89,18 @@ A Bayesian nonparametric approach is used in \cite{nonparametric} to compute a n
 In \cite{matrix-factorization} a matrix factorization approach is used to extract latent features that can take into consideration the output of an arbitrary unsupervised method. The authors show a significant increase in predictive performance when considering a ranking loss function suitable for  the imbalance problem, i.e. when the number of negative is much larger than the number of positive instances. 
 
 In general supervised methods exhibit better accuracies compared to unsupervised methods although incurring in much higher computational and memory complexity costs.
+Moreover, most approaches implicitly represent the link prediction problem and the inference used to tackle it as a disjunction over the edges, that is, information on edges is propagated in an additive fashion so that for a node to have $k$ neighbors or $k+1$ does not make a drastic difference.
+We claim that this hypothesis is likely putting a cap on the discriminative power of classifiers and therefore we propose a novel supervised method that employs a conjunctive representation. We call the method ''joint neighborhood subgraphs link prediction'' (JNSL). The key idea here is to transform the link prediction task into a binary classification on suitable small subgraphs which we then solve using an efficient graph kernel method.
 
-
-The common feature of most existing supervised and unsupervised methods for link prediction is that they use transitive manner to exploit the graph structure. This manner normally does not show high discriminative capacity. Therefore, in this paper, we propose a novel supervised method named joint neighborhood subgraphs link prediction (JNSL). Our method first introduces a method to represent each link between two nodes as a graph composed by taking a union of neighborhood subgraphs rooted at these these corresponding nodes. It then adopts a decompositional graph kernel which allow to fully exploit graphs' structure to measure the similarity, one of the key point in machine learning algorithms.
-
-In this work we present a novel supervised approach based on pure topological information.
-The main contribution is 
 
 \section{Method}
-In this section, we describe our proposed link prediction method which is based on the graph structure exploitation only.
-\subsection{Definitions and notation}
-We consider a graph $G=(V,E)$ where $V$ is the set of nodes and $E$ is the set of links. The set $E$ can be divided into a subset of observed links ($O$) and a subset of unobserved links ($U$). It is often that the set $O$ is not a complete set since they are many actual links are missing. Therefore, finding most likely set of links in $U$ to be considered as the complement set of $O$ is an important task which impacts on the performance of graph-based systems. Link prediction is the task that aims at exploiting graph structure to rank links in $U$ from the most to the least probable to be considered as observed links in $O$.
 
-We define the \textit{distance} between two nodes $u$ and $v$, notated as $\mathcal{D}(u,v)$, is the length of the shortest path between them. The \textit{neighborhood} of a node $u$ with radius $r$ is the set of nodes such that they are at distance no greater than $r$ from $u$ and it is denoted by $N_r(u)$ and $N_r(u) = \lbrace v\ |\ d(u,v) \leq r \rbrace$. The \textit{neighborhood subgraph} with radius $r$ of a given node $u$, denoted by $\mathcal{N}_{r}^{u}$, is the subgraph formed by the nodes in the
-\textit{neighborhood} with radius $r$ of $u$ and the corresponding edges with endpoints in $N_r(u)$. The degree of a node $u$ denoted as $d(u)$ is the cardinality of its neighborhood $d(u) = |\mathcal{N}_{1}^{u}|$. We also notate the maximum node degree in the graph $G$ as $d(G)$, $d(G) = max\lbrace d(u)\ |\ u \in V \rbrace$
+\subsection{Definitions and notation}
+We represent a problem instance as a graph $G=(V,E)$ where $V$ is the set of nodes and $E$ is the set of links. The set $E$ is partitioned into the subset of observed links ($O$) and the subset of unobserved links ($U$). Like other approaches we assume that all unobserved links are indeed ''non-links'' and we therefore define the link prediction problem as the task of ranking candidate links from the most to the least probable to recover links in $O$ but not in $U$ exploiting only the network topology.
+
+
+We define the \textit{distance} $\mathcal{D}(u,v)$ between two nodes $u$ and $v$, as the number of edges on the shortest path between them. The \textit{neighborhood} of a node $u$ with radius $r$, $N_r(u) = \lbrace v\ |\ d(u,v) \leq r \rbrace$, is the set of nodes at distance no greater than $r$ from $u$. The corresponding \textit{neighborhood subgraph} $\mathcal{N}_{r}^{u}$ is the  subgraph induced by the neighborhood (i.e. considering all the edges with endpoints in $N_r(u)$). The \textit{degree} of a node $u$, $d(u) = |\mathcal{N}_{1}^{u}|$, is the cardinality of its neighborhood. The maximum node degree in the graph $G$ is $d(G)$.
+
 \subsection{The neighborhood subgraph pairwise distance kernel}
 In this section, we briefly desbribe an efficient kernel named NSPDK \cite{nspdk} which allows to measure the similarity between labeled graphs. NSPDK is an instance of decompositional kernel \cite{convolution-kernel}.
 
