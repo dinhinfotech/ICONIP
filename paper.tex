@@ -144,14 +144,14 @@ $\kappa_{r,d}(G,G^{'}) =
 
 In the link prediction problem we are given a graph $G(V,E)$ and a binary target vector $Y=\{y_{(0,0)},y_{(0,1)}, \cdots, y_{(|V|,|V|)}\}$ where $y_{(u,v)}=1$ if $(u,v) \in E$ and 0 otherwise. The training data is obtained considering a random subset of edges in $E^{tr} \in E$ and inducing a training graph $G^{tr}=(V,E^{tr})$. The remaining edges $E^{ts} = E \setminus E^{tr}$ are used to partition the target vectors: $Y^{tr} = \{y_{(u,v)} | (u,v) \in E^{tr}\}$, $Y^{ts} = \{y_{(u,v)} | (u,v) \in E^{ts}\}$.
 We can now cast the problem as a standard classification problem in the domain of graphs. Given $G^{tr}$ we build a train and test set as the corresponding joint neighborhood subgraphs as detailed in Section~\ref{sec:link}. 
-We can now compute a Gram matrix of the instances and solve the task using the LinearSVC library.
+We can now compute a Gram matrix of the instances and solve the classification task using for example the efficient LinearSVC library.
 
 \section{Experiment}
-In this section, we intend to measure the performance of our proposed method and compare it with other link prediction methods. We follow the procedure used in \cite{matrix-factorization} which employs six datasets in different domains. In the following we shortly describe each dataset.
+To compare the performance of the JNSL method with other link prediction approaches we follow \cite{matrix-factorization} and use 6 datasets belonging to different domains.
 \begin{itemize}
-\item \textit{Protein }\cite{protein-protein}: the medium confidence network which encodes the interaction between proteins. It contains 2617 nodes and 11855 links. The average degree is 9.1.
+\item \textit{Protein }\cite{protein-protein}: nodes are proteins and edges encodes a thresholded interaction confidence between proteins. It has 2617 nodes and 11855 links with a median degree of 9.1.
 
-\item \textit{Metabolic} \cite{metabolic}: a biological network which relates enzyme proteins and chemical compounds and it includes 668 nodes and 2782 links. The average degree is 8.3.
+\item \textit{Metabolic} \cite{metabolic}: nodes are enzyme and metabolites, edges are present if the enzyme catalyzes for a reaction that include those chemical compounds. It has 668 nodes and 2782 links with a median degree of 8.3.
 
 \item \textit{Nips} \cite{nips}: a network of co-authors at NIPS conference from the first to the $12^{th}$ edition. Nodes are authors and links encode co-author relation between authors. This network contains 2865 nodes and 4733 links. The average degree is 3.3.
 
