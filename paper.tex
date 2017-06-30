@@ -74,7 +74,7 @@ $\lbrace$dinh, sperduti$\rbrace$@math.unipd.it, f.costa@exeter.ac.uk
 
 
 \begin{abstract}
-The amount of relational data is increasing rapidly. These datasets are best represented as networks or graphs. A key characteristic of this type of data collections is the sparseness and dynamic nature. A crucial computational task is then the ''link prediction problem'' which allows to suggest possible collaborators for scientists in social networks, or to discover unknown interactions between proteins to explain the mechanism of a disease in biological networks, or to suggest novel products to be bought to a customer in a e-commerce recommendation system. Most approaches however do not effectively exploit the topological contextual information available in the neighborhood of each edge. Here we cast the problem as a binary classification task over specific subgraphs and employ efficient graph kernels to solve it and show empirically state-of-the-art results on several benchmark datasets. 
+The amount of relational data is increasing rapidly. These datasets are best represented as networks or graphs. A key characteristic of this type of data collections is the sparseness and dynamic nature. A crucial computational task is then the ''link prediction problem'' which allows to suggest possible collaborators for scientists in social networks, or to discover unknown interactions between proteins to explain the mechanism of a disease in biological networks, or to suggest novel products to be bought to a customer in a e-commerce recommendation system. Most approaches however do not effectively exploit the topological contextual information available in the neighborhood of each edge. Here we cast the problem as a binary classification task over specific subgraphs and employ efficient graph kernels to solve it. We show empirically state-of-the-art results on several benchmark datasets. 
 
 
 % Graphs are common data structure used to represent data in which the relation between entities are encoded. A number of graph-based methods and systems have been proposed, varying from biology to recommendation to social network. Most methods have to take partially observed graphs as the input to proceed due to the lack of information. This prevents them from showing promising results. Link prediction becomes an effective paradigm to solve this problem. However, most existing link prediction methods are based on the transitive manner which cannot effectively exploit graph structures. Here we propose a method that first represents each link between two nodes by a graph composed of their neighborhood subgraphs. We then employ a decompositional graph kernel to measure the similarity between links. An empirical experiment on different datasets proves that our proposed method shows the state of the art for link prediction.
@@ -109,10 +109,11 @@ We define the \textit{distance} $\mathcal{D}(u,v)$ between two nodes $u$ and $v$
 \subsection{Link encoding as subgraphs union}
 \label{sec:link}
 Most methods for link prediction compute pairwise nodes similarities treating  the nodes defining the candidate edge independently. Instead we propose to jointly consider both candidate endpoint nodes together with their extended ''context''. To do so we build a graph starting from the two nodes and the underlying network. Given nodes $u$ and $v$, we first extract the two neighborhood sets with a user defined radius $R$ rooted at $u$ and $v$ to obtain $N_R(u)$ and $N_R(v)$, respectively. We then consider the graph $\mathcal{J}$ induced by the set union $N_R(u) \cup N_R(u)$. Finally we add an auxiliary node $w$ and the necessary edges to connect it to $u$ and $v$ (see Fig.\ref{fig:example}).
+
 \begin{figure}
 \centering
 \includegraphics[width=.9\textwidth]{subgraphs}
-\caption{Left) a given network. Right) joint neighborhood subgraphs for an existing (top) and a non existing link (bottom).}
+\caption{Left) We represent with solid lines edges belonging to the training material and with a dotted line edges belonging to the test material. Right) joint neighborhood subgraphs for an existing (green endpoints) (top) and a non existing (red endpoints) link (bottom). These graphs will receive respectively a positive and a negative target.}
 \label{fig:example}
 \end{figure}
 
