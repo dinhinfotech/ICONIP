@@ -108,8 +108,7 @@ Most methods for link prediction compute pairwise nodes similarities treating  t
 
 
 \subsection{Node labeling}
-We propose to use a graph kernel approach to classify the subgraphs encoding each link. In our setup nodes are not endowed with any ''side'' information. However to increase the discriminative power of the similarity notion induced by the graph kernel, instead of assuming a dummy, non-informative label on each node, we propose to use a node labeling function $\ell$ which assigns a discrete label as the node degree. As the degree distribution can in principle extend to large values, we employ a  discretization technique. 
-First, we use the degree values for their labels for nodes having degree less than or equal 5. We then discretize the degrees larger than a user defined threshold $T$ ($T=5$ in our experimental evaluation) into $k$ bins and assign the same label for nodes belong to the same bin. We label for nodes owning similar degrees with the same label due to the assumption that nodes with similar degrees tend to share common properties. Formally, the function is defined as:
+We propose to use a graph kernel approach to classify the subgraphs encoding each link. In our setup nodes are not endowed with any ''side'' information. However to increase the discriminative power of the similarity notion induced by the graph kernel, instead of assuming a dummy, non-informative label on each node, we propose to use a node labeling function $\ell$ which assigns as the discrete label the node degree. More precisely, for nodes having degree less than or equal than a user defined threshold $T$ ($T=5$ in our experimental evaluation) we use as label the degree value. Degree values larger than $T$ are subsequently discretized into $k$ levels. Here the implicit assumption is that nodes with similar degrees have common properties. Formally, the labeling function is defined as:
 \begin{center}
 $\ell(u) = \left\{
 	\begin{array}{ll}
@@ -118,12 +117,12 @@ $\ell(u) = \left\{
 	\end{array}
 \right.$,
 \end{center}
-where $i = \lceil \frac{d(u)-T}{bin}\rceil$, $bin = \frac{d(G)-T}{\lambda - T}$ and $\lambda$ ($\lambda > T$) is the number of labels used to label for nodes in the graphs. The value of $\lambda$ depend on the histogram of graph node degree. We can use tuning technique in order to obtain suitable value for $\lambda$.
+where $i = \lceil \frac{d(u)-T}{bin}\rceil$, $bin = \frac{d(G)-T}{\lambda - T}$ and $\lambda$ ($\lambda > T$) is the maximum number of symbols used. The value of $\lambda$ depend on the degree distribution and can be tuned as a hyperparameter of the approach.
 
 
 
-\subsection{The neighborhood subgraph pairwise distance kernel}
-In this section, we briefly desbribe an efficient kernel named NSPDK \cite{nspdk} which allows to measure the similarity between labeled graphs. NSPDK is an instance of decompositional kernel \cite{convolution-kernel}.
+\subsection{The graph kernel}
+Here we briefly describe an efficient graph kernel called the Neighborhood Subgraph Pairs Distance kernel (NSPDK) introduced in \cite{nspdk}. NSPDK is an instance of ''decompositional'' kernels \cite{convolution-kernel} based on the idea of counting the number of common small subgraphs between two graphs. The subgraphs are pairs of neighborhoods whose roots are at a short distance. 
 
 Given a labeled graph $G \in \mathcal{G}$ and two rooted graphs $A_u, B_v$, we first define the relation $R_{r,d}(A_u, B_v, G)$ to be true {\em iff} $A_u \cong \mathcal{N}_r^u$ is (up to isomorphism $\cong$) a neighborhood subgraph with radius $r$ of $G$ and so is $B_v \cong  \mathcal{N}_r^v$, such that $v$ is a distance $d$ from $u$: $\mathcal{D}(u,v)= d$. We then define the inverse relation $R^{-1}$ that returns all pairs of neighborhoods of radius $r$ at distance $d$ in $G$, $R^{-1}_{r,d}(G) = \lbrace A_u, B_v | R_{r,d}(A_u,B_v,G)=true\rbrace$. The kernel $\kappa_{r,d}$ over $\mathcal{G} \times \mathcal{G}$ is the number of such fragments in common in two input graphs:
 \begin{center}
@@ -136,10 +135,14 @@ $\kappa_{r,d}(G,G^{'}) =
 \end{center}
 \noindent where $\textbf{1}_{A \cong B}$ is the \textit{exact matching function} that returns 1 if $A$ is isomorphic to $B$ and 0 otherwise. Finally, the NSPDK is defined as $K(G,G') = \sum\limits_{r}{\sum\limits_{d}{\kappa_{r,d}(G,G')}}$, where for efficiency reasons, the values of $r$ and $d$ are upper bounded to a given maximal $r^*$ and $d^*$, respectively.
 
-Related to exact matching function, this function needs to solve the graph isomorphism problem. This problem is not known to be solvable in polynomial time nor to be NP-complete. In \cite{nspdk}, they propose an approximate method to figure out graph isomorphism problem. It first transforms graphs into strings. It then employ a hash function to map each unique string with an integer number. Finally, two graphs are isomorphic if they have the same corresponding integer numbers.
+% Related to exact matching function, this function needs to solve the graph isomorphism problem. This problem is not known to be solvable in polynomial time nor to be NP-complete. In \cite{nspdk}, they propose an approximate method to figure out graph isomorphism problem. It first transforms graphs into strings. It then employ a hash function to map each unique string with an integer number. Finally, two graphs are isomorphic if they have the same corresponding integer numbers.
 
 \subsection{Joint neighborhood subgraphs link prediction}
-Given a graph $G(V,E)$ and a set of links $L = \lbrace(u,v)\ |\ (u,v)\in\ O\ or\ (u,v)\in U \rbrace$, our method consists five steps:
+
+We propose to cast the link prediction problem
+
+In the link prediction problem we are given a graph $G(V,E)$ and a binary target vector $Y=\{y_{(0,0)},y_{(0,1)}, \cdots, y_{(|V|,|V|)}\}$ where $y_{(u,v)}=1$ if $(u,v) \in E$ and 0 otherwise. The training data is obtained considering a random subset of edges in $E^{tr} \in E$ and inducing a training graph $G^{tr}=(V,E^{tr})$. The remaining edges $E^{ts} = E \setminus E^{tr}$  
+
 \begin{itemize}
 	\item Node labeling: Nodes in $G$ are labeled using a defined node label function $\ell$.
 	\item Link representing: Link in $L$ are represented as joint neighborhood subgraphs. As a result, we have a set of graphs $SG = \lbrace G_{uv}\ |\ (u,v) \in L \rbrace$
