@@ -115,7 +115,7 @@ $\kappa_{r,d}(G,G^{'}) =
 Related to exact matching function, this function needs to solve the graph isomorphism problem. This problem is not known to be solvable in polynomial time nor to be NP-complete. In \cite{nspdk}, they propose an approximate method to figure out graph isomorphism problem. It first transforms graphs into strings. It then employ a hash function to map each unique string with an integer number. Finally, two graphs are isomorphic if they have the same corresponding integer numbers.
 
 \subsection{Node labeling}
-NSPDK takes labeled graphs as its input to proceed. Therefore, graph node labeling is a step needs to be done before employing NSPDK for graph similarity measure. Here, we propose to a node labeling function $\ell$ such that nodes with similar degrees are assigned the same label. It is due to the assumption that nodes with similar degrees tend to share common properties. Following is the definition of the the function:
+NSPDK takes labeled graphs as its input to proceed. Therefore, graph node labeling is a step needs to be done before employing NSPDK for graph similarity measure. Here, we propose to a node labeling function $\ell$ which assigns labels for nodes based on node degrees. Our idea is that nodes having small degree, less than or equal to 5, we use the degree values as their labels. For nodes with degree greater than 5, we group them into different groups based on the degrees, nodes are in the same group are assigned the same labels. We label for nodes owning similar degrees with the same label due to the assumption that nodes with similar degrees tend to share common properties. Formally, the function is defined as:
 \begin{center}
 $\ell(u) = \left\{
 	\begin{array}{ll}
@@ -142,17 +142,17 @@ Given a graph $G(V,E)$ and a set of links $L = \lbrace(u,v)\ |\ (u,v)\in\ O\ or\
 \section{Experiment}
 In this section, we intend to measure the performance of our proposed method and compare it with other link prediction methods. We follow the procedure used in \cite{matrix-factorization} which employs six datasets in different domains. In the following we shortly describe each dataset.
 \begin{itemize}
-\item \textit{Protein }\cite{protein-protein}: the medium confidence network which encodes the interaction between proteins. It contains 2617 nodes and 11855 links.
+\item \textit{Protein }\cite{protein-protein}: the medium confidence network which encodes the interaction between proteins. It contains 2617 nodes and 11855 links. The average degree is 9.1.
 
-\item \textit{Metabolic} \cite{metabolic}: a biological network which relates enzyme proteins and chemical compounds and it includes 668 nodes and 2782 links.
+\item \textit{Metabolic} \cite{metabolic}: a biological network which relates enzyme proteins and chemical compounds and it includes 668 nodes and 2782 links. The average degree is 8.3.
 
-\item \textit{Nips} \cite{nips}: a network of co-authors at NIPS conference from the first to the $12^{th}$ edition. Nodes are authors and links encode co-author relation between authors. This network contains 2865 nodes and 4733 links. 
+\item \textit{Nips} \cite{nips}: a network of co-authors at NIPS conference from the first to the $12^{th}$ edition. Nodes are authors and links encode co-author relation between authors. This network contains 2865 nodes and 4733 links. The average degree is 3.3.
 
-\item \textit{Condmat} \cite{condmat}: a network of co-authors for condensed matter physists. This network has 14230 nodes and 1196 links.
+\item \textit{Condmat} \cite{condmat}: a network of co-authors for condensed matter physists. This network has 14230 nodes and 1196 links. The average degree is 0.17.
 
-\item \textit{Conflict} \cite{conflict1}, \cite{conflict2}: a network describing the dispute between 130 countries. A link connecting two nodes (countries) if they dispute. We have 180 links in total in this network.
+\item \textit{Conflict} \cite{conflict1}, \cite{conflict2}: a network describing the dispute between 130 countries. A link connecting two nodes (countries) if they dispute. We have 180 links in total in this network. The average degree is 2.5.
 
-\item \textit{Powergrid} cite{powergrid}: a network of electric powergrid in US. It has 4941 nodes and 6594 links.
+\item \textit{Powergrid} cite{powergrid}: a network of electric powergrid in US. It has 4941 nodes and 6594 links. The average degree is 2.7.
 \end{itemize}
 
 We evaluate the performance of employed methods via a 10 splits. Each round, a given ratio of links will be used to train models, and the rest of links are used to test. For \textit{Protein}, \textit{Metabolic}, \textit{Nips} and \textit{Conflict} networks, we set the training ratio to 10$\%$ while the training ratio for \textit{Condmat} and \textit{Powergrid} to 90$\%$. The performance of each method is computed by taking an average of ROC-AUC over 10 rounds.
