@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/MacPorts 2015_8) (preloaded format=pdflatex 2016.2.22)  30 JUN 2017 16:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/MacPorts 2015_8) (preloaded format=pdflatex 2016.2.22)  30 JUN 2017 16:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -340,7 +340,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <subgraphs.pdf, id=18, 201.5946pt x 59.39655pt>
 File: subgraphs.pdf Graphic file (type pdf)
  <use subgraphs.pdf>
-Package pdftex.def Info: subgraphs.pdf used on input line 111.
+Package pdftex.def Info: subgraphs.pdf used on input line 114.
 (pdftex.def)             Requested size: 312.40906pt x 92.04553pt.
  [3 <./subgraphs.pdf>] [4] [5] [6]
 Missing character: There is no â in font cmr9!
@@ -380,7 +380,7 @@ msfonts/cm/cmsy10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfon
 ts/cm/cmsy5.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
 cmsy7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy9.
 pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on paper.pdf (7 pages, 577418 bytes).
+Output written on paper.pdf (7 pages, 577857 bytes).
 PDF statistics:
  2727 PDF objects out of 2984 (max. 8388607)
  1955 compressed objects within 20 object streams
